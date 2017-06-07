@@ -10,6 +10,7 @@ namespace SMSService.Controllers
 {
     public class SurveyController : ApiController
     {
+        [HttpGet]
         public IEnumerable<survey> Get()
         {
             using (SMSDBEntities entities = new SMSDBEntities())
@@ -19,6 +20,7 @@ namespace SMSService.Controllers
             }
         }
 
+        [HttpGet]
         public HttpResponseMessage Get(int id)
         {
             using (SMSDBEntities entities = new SMSDBEntities())
