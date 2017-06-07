@@ -26,7 +26,13 @@ namespace SMSService
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-                        
+
+            config.Routes.MapHttpRoute(
+                       name: "QuestionApi",
+                       routeTemplate: "api/survey/{id}/question/{qid}",
+                       defaults: new { controller = "question", qid = RouteParameter.Optional }
+              );
+
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             //var json = config.Formatters.JsonFormatter;
@@ -38,9 +44,10 @@ namespace SMSService
             //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
             //config.Formatters.Remove(config.Formatters.XmlFormatter);
 
-            var json = config.Formatters.JsonFormatter;
-            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            //var json = config.Formatters.JsonFormatter;
+            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            //config.Formatters.Remove(config.Formatters.XmlFormatter);
+            //json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;            
         }
     }
 }
