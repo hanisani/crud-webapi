@@ -33,21 +33,8 @@ namespace SMSService
                        defaults: new { controller = "question", qid = RouteParameter.Optional }
               );
 
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
-
-            //var json = config.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            //config.Formatters.Remove(config.Formatters.XmlFormatter);
-            //json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-
-            //var json = config.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            //config.Formatters.Remove(config.Formatters.XmlFormatter);
-
-            //var json = config.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
-            //config.Formatters.Remove(config.Formatters.XmlFormatter);
-            //json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;            
+            //config.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+            //config.Formatters.Add(GlobalConfiguration.Configuration.Formatters.JsonFormatter);
         }
     }
 }
