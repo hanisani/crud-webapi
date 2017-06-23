@@ -19,5 +19,26 @@ namespace SMSService.Controllers
                 return entities.questions.Where(s => s.sid == id).ToList();
             }
         }
+
+        public HttpResponseMessage Post([FromBody] question question)
+        {
+            try
+            {
+                using (SMSDBEntities entities = new SMSDBEntities())
+                {
+                    entities.questions.Add(question);
+                    entities.SaveChanges();
+
+                    var message = Request.CreateResponse(HttpStatusCode.Created, question);
+                    message.Headers.Location = new Uri(Request.RequestUri + question.qid.ToString());
+
+                    return message;
+                }
+            }
+            catch (Exception exp)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exp);
+            }
+        }
     }
 }
