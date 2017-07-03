@@ -16,7 +16,7 @@ namespace SMSService.Controllers
             using (SMSDBEntities entities = new SMSDBEntities())
             {
                 entities.Configuration.ProxyCreationEnabled = false;
-                return entities.questions.Where(s => s.sid == id).ToList();
+                return entities.questions.Where(q => q.sid == id).ToList();
             }
         }
 
