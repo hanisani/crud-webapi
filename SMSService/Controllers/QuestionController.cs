@@ -20,6 +20,36 @@ namespace SMSService.Controllers
             }
         }
 
+        [HttpDelete]
+        public HttpResponseMessage Delete(int id)
+        {
+            try
+            {
+                using (SMSDBEntities entities = new SMSDBEntities())
+                {
+                    var question = entities.questions.FirstOrDefault(q => q.qid == id);
+
+                    if (question == null)
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Question with id = " + id + " not found");
+                    else
+                    {
+                        entities.questions.Remove(question);
+                        entities.SaveChanges();
+
+                        var message = Request.CreateResponse(HttpStatusCode.OK);
+                        message.Headers.Location = new Uri(Request.RequestUri + id.ToString());
+
+                        return message;
+                    }
+
+                }
+            }
+            catch (Exception exp)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, exp);
+            }
+        }
+
         public HttpResponseMessage Post([FromBody] question question)
         {
             try
